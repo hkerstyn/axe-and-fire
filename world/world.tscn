@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dk01ixurl7t0i" path="res://world/forest.tscn" id="1_53nsc"]
 
-[node name="Node3D" type="Node3D"]
+[node name="world" type="Node3D"]
+editor_description = "this is the scene that actually gets rendered"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.865126, 0.37213, -0.336269, 0, 0.670453, 0.741952, 0.501555, -0.641882, 0.580026, -6.86832, 15.8991, 12.7114)
