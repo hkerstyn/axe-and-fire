@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk01ixurl7t0i"]
 
 [ext_resource type="PackedScene" uid="uid://jhap8mehbk75" path="res://blender/forest.blend" id="1_gs0j4"]
-[ext_resource type="Material" uid="uid://dlivdbm7xdywn" path="res://flat_shader_material.tres" id="2_ynvka"]
+[ext_resource type="Material" uid="uid://dlivdbm7xdywn" path="res://flat_shader/flat_shader_material.tres" id="2_ynvka"]
 
 [node name="tutorial" instance=ExtResource("1_gs0j4")]
 
