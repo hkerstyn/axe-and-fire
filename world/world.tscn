@@ -1,13 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=3 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="PackedScene" uid="uid://dk01ixurl7t0i" path="res://world/forest.tscn" id="1_53nsc"]
+[ext_resource type="Script" path="res://world/animate_camera.gd" id="1_ofjyx"]
 
 [node name="world" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.865126, 0.37213, -0.336269, 0, 0.670453, 0.741952, 0.501555, -0.641882, 0.580026, -6.86832, 15.8991, 12.7114)
+transform = Transform3D(-0.651407, -0.530834, 0.54211, 0, 0.714499, 0.699637, -0.758728, 0.455749, -0.46543, 8.47884, 12.3405, -4.14887)
 current = true
+fov = 98.1612
+script = ExtResource("1_ofjyx")
+
+[node name="SecondCamera" type="Camera3D" parent="Camera3D"]
+transform = Transform3D(0.121869, -0.697509, 0.706136, 0.694422, 0.568241, 0.441452, -0.709172, 0.436557, 0.553617, 11.287, 7.05623, -7.13505)
 fov = 98.1612
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
