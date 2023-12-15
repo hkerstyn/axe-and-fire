@@ -1,12 +1,15 @@
-[gd_scene format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=3 format=3 uid="uid://tss5kskyupkk"]
+
+[ext_resource type="PackedScene" uid="uid://bvtu017de2m6t" path="res://character_controller/character.tscn" id="1_0ia3m"]
+[ext_resource type="PackedScene" uid="uid://jhap8mehbk75" path="res://blender/forest.blend" id="2_1y7bp"]
 
 [node name="world" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.651407, -0.530834, 0.54211, 0, 0.714499, 0.699637, -0.758728, 0.455749, -0.46543, 8.47884, 12.3405, -4.14887)
+transform = Transform3D(-0.459453, 0.313201, -0.831149, 0, 0.935766, 0.352623, 0.888202, 0.162014, -0.429941, -2.38754, 1.61215, -1.22496)
 current = true
-fov = 98.1612
+fov = 100.353
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(0.810992, 0, 0.585057, 0, 1, 0, -0.585057, 0, 0.810992, -0.367281, 5.5465, 18.939)
@@ -16,3 +19,8 @@ omni_range = 12.006
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.518346, -0.0395526, -0.854256, -0.673785, 0.63404, 0.379483, 0.526623, 0.772288, -0.355302, -9.91396, 18.6371, 10.724)
 shadow_enabled = true
+
+[node name="Character" parent="." instance=ExtResource("1_0ia3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35169, 0)
+
+[node name="forest" parent="." instance=ExtResource("2_1y7bp")]
