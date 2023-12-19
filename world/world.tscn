@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=5 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="PackedScene" uid="uid://bvtu017de2m6t" path="res://character_controller/character.tscn" id="1_0ia3m"]
 [ext_resource type="PackedScene" uid="uid://jhap8mehbk75" path="res://blender/forest.blend" id="2_1y7bp"]
+[ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://blender/goobler.blend" id="3_jtugw"]
+[ext_resource type="Script" path="res://character_controller/animation.gd" id="4_fa5u2"]
 
 [node name="world" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
@@ -24,3 +26,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35169, 0)
 
 [node name="forest" parent="." instance=ExtResource("2_1y7bp")]
+
+[node name="goobler" parent="." instance=ExtResource("3_jtugw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144076, -1.21314, 2.55005)
+script = ExtResource("4_fa5u2")

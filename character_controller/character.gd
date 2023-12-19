@@ -1,4 +1,5 @@
 extends CharacterBody3D
+@onready var animation_player = $goobler/AnimationPlayer
 
 var jump_count = 0
 var left_dir = Vector3.FORWARD
@@ -28,12 +29,22 @@ func _physics_process(delta):
 		
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+		animation_player.play("Walk", 0.5, 2.0)
+		look_at(position-direction)
+	else:
+		animation_player.play("Idle", 0.5)
+	
+
 	
 	# horizontal movement
 	velocity.z = direction.z * speed
 	velocity.x = direction.x * speed
-	
 
 			
 	velocity.y += -fall_acceleration*delta
 	move_and_slide()
+	
+	if velocity.y > 0.3:
+		animation_player.play("Jump")
+	
+
