@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=7 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="PackedScene" uid="uid://bvtu017de2m6t" path="res://character_controller/character.tscn" id="1_0ia3m"]
 [ext_resource type="PackedScene" uid="uid://jhap8mehbk75" path="res://blender/forest.blend" id="2_1y7bp"]
 [ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://blender/goobler.blend" id="3_jtugw"]
 [ext_resource type="Script" path="res://character_controller/animation.gd" id="4_fa5u2"]
+[ext_resource type="PackedScene" uid="uid://d20f33m562imj" path="res://sky/skybox.blend" id="5_qppgx"]
+[ext_resource type="Material" uid="uid://w0tsae307jn2" path="res://sky/sky_shader_material.tres" id="6_g4mx6"]
 
 [node name="world" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
@@ -30,3 +32,12 @@ fov = 100.353
 [node name="goobler" parent="." instance=ExtResource("3_jtugw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144076, -1.21314, 2.55005)
 script = ExtResource("4_fa5u2")
+
+[node name="skybox" parent="." instance=ExtResource("5_qppgx")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+
+[node name="Cube" parent="skybox" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("6_g4mx6")
+
+[editable path="skybox"]
