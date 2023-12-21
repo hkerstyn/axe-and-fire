@@ -1,12 +1,13 @@
-extends Node3D
-var secret_tree
+extends Node
+# singleton World
+
+var world_path = "/root/Node2D/PixelizerViewportContainer/PixelizerViewport/World"
+@onready var world = get_node(world_path)
 
 func _ready():
-	SceneLoader.load_game_scene("forest")
+	SceneLoader.load_game_scene("forest", "Spawn")
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("test"):
-		if SceneLoader.current_game_scene_name == "forest":
-			SceneLoader.load_game_scene("secret_forest")
-		else:
-			SceneLoader.load_game_scene("forest")
+		SceneLoader.load_game_scene("forest", "Teleport")
+

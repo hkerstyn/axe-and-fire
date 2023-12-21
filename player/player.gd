@@ -2,8 +2,9 @@ extends CharacterBody3D
 @onready var animation_player = $Mesh/AnimationPlayer
 
 var jump_count = 0
-var left_dir = Vector3.FORWARD
-var up_dir = Vector3.RIGHT
+@onready var left_dir = - get_parent().global_basis.z
+@onready var up_dir = get_parent().global_basis.x
+
 var speed = 4
 var fall_acceleration = 75
 
