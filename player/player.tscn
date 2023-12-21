@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvtu017de2m6t"]
 
-[ext_resource type="Script" path="res://character_controller/character.gd" id="1_4efss"]
-[ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://blender/goobler.blend" id="2_cisym"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_4efss"]
+[ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://characters/goobler.blend" id="2_cisym"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13a5a"]
 radius = 0.3
@@ -9,7 +9,7 @@ radius = 0.3
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4ewe"]
 size = Vector3(0.3, 2, 0.2)
 
-[node name="Character" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4efss")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

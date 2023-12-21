@@ -1,43 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=4 format=3 uid="uid://tss5kskyupkk"]
 
-[ext_resource type="PackedScene" uid="uid://bvtu017de2m6t" path="res://character_controller/character.tscn" id="1_0ia3m"]
-[ext_resource type="PackedScene" uid="uid://jhap8mehbk75" path="res://blender/forest.blend" id="2_1y7bp"]
-[ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://blender/goobler.blend" id="3_jtugw"]
-[ext_resource type="Script" path="res://character_controller/animation.gd" id="4_fa5u2"]
-[ext_resource type="PackedScene" uid="uid://d20f33m562imj" path="res://sky/skybox.blend" id="5_qppgx"]
-[ext_resource type="Material" uid="uid://w0tsae307jn2" path="res://sky/sky_shader_material.tres" id="6_g4mx6"]
+[ext_resource type="PackedScene" uid="uid://bvtu017de2m6t" path="res://player/player.tscn" id="1_0ia3m"]
+[ext_resource type="Script" path="res://world/world.gd" id="1_po6by"]
+[ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://sky/sky.tscn" id="2_ylh0b"]
 
-[node name="world" type="Node3D"]
+[node name="World" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(0.810992, 0, 0.585057, 0, 1, 0, -0.585057, 0, 0.810992, -0.367281, 5.5465, 18.939)
-shadow_enabled = true
-omni_range = 12.006
+script = ExtResource("1_po6by")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.518346, -0.0395526, -0.854256, -0.673785, 0.63404, 0.379483, 0.526623, 0.772288, -0.355302, -9.91396, 18.6371, 10.724)
 shadow_enabled = true
 
-[node name="Character" parent="." instance=ExtResource("1_0ia3m")]
+[node name="Player" parent="." instance=ExtResource("1_0ia3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35169, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Character"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(-0.192556, 0.695663, -0.692081, 0, 0.705279, 0.70893, 0.981286, 0.136508, -0.135806, -2.21682, 3.26676, -0.525948)
 current = true
 fov = 100.353
 
-[node name="forest" parent="." instance=ExtResource("2_1y7bp")]
-
-[node name="goobler" parent="." instance=ExtResource("3_jtugw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144076, -1.21314, 2.55005)
-script = ExtResource("4_fa5u2")
-
-[node name="skybox" parent="." instance=ExtResource("5_qppgx")]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
-
-[node name="Cube" parent="skybox" index="0"]
-cast_shadow = 0
-surface_material_override/0 = ExtResource("6_g4mx6")
-
-[editable path="skybox"]
+[node name="Sky" parent="." instance=ExtResource("2_ylh0b")]

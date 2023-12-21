@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dydcxqvh07a1v"
-path="res://.godot/imported/sunlit.png-7d0ee6425e7bd7371c9e494efd259100.ctex"
+uid="uid://hpvpwmwv0cwn"
+path="res://.godot/imported/sky.png-bb884a64dee98a5d2a20f3ef246705e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blender/sunlit.png"
-dest_files=["res://.godot/imported/sunlit.png-7d0ee6425e7bd7371c9e494efd259100.ctex"]
+source_file="res://sky/textures/sky.png"
+dest_files=["res://.godot/imported/sky.png-bb884a64dee98a5d2a20f3ef246705e0.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

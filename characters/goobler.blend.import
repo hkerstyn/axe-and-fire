@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhw8ks7tighve"
-path="res://.godot/imported/cube.blend-af3e6164ee7e85795064c2e02851424d.scn"
+uid="uid://dnk6nfpyhlxre"
+path="res://.godot/imported/goobler.blend-a30525dacc8764bda5f75b4e85b41783.scn"
 
 [deps]
 
-source_file="res://blender/cube.blend"
-dest_files=["res://.godot/imported/cube.blend-af3e6164ee7e85795064c2e02851424d.scn"]
+source_file="res://characters/goobler.blend"
+dest_files=["res://.godot/imported/goobler.blend-a30525dacc8764bda5f75b4e85b41783.scn"]
 
 [params]
 
@@ -28,7 +28,7 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
-import_script/path=""
+import_script/path="res://flat_shader/flat_material_import.gd"
 _subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

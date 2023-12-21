@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://w0tsae307jn2"]
 
 [ext_resource type="Shader" path="res://sky/sky.gdshader" id="1_5feux"]
-[ext_resource type="Texture2D" uid="uid://hpvpwmwv0cwn" path="res://sky/sky.png" id="2_vmu2j"]
+[ext_resource type="Texture2D" uid="uid://hpvpwmwv0cwn" path="res://sky/textures/sky.png" id="2_vmu2j"]
 
 [resource]
 render_priority = 0

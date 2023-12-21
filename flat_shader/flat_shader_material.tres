@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dlivdbm7xdywn"]
 
 [ext_resource type="Shader" path="res://flat_shader/flat.gdshader" id="1_5rdk2"]
-[ext_resource type="Texture2D" uid="uid://bf8swet71mfrm" path="res://blender/lamplit.png" id="2_ir8yh"]
-[ext_resource type="Texture2D" uid="uid://dydcxqvh07a1v" path="res://blender/sunlit.png" id="3_yhx4u"]
-[ext_resource type="Texture2D" uid="uid://bgmsk3xeym3jp" path="res://blender/unlit.png" id="4_0hta3"]
+[ext_resource type="Texture2D" uid="uid://bf8swet71mfrm" path="res://palettes/lamplit.png" id="2_ir8yh"]
+[ext_resource type="Texture2D" uid="uid://dydcxqvh07a1v" path="res://palettes/sunlit.png" id="3_yhx4u"]
+[ext_resource type="Texture2D" uid="uid://bgmsk3xeym3jp" path="res://palettes/unlit.png" id="4_0hta3"]
 
 [resource]
 render_priority = 0

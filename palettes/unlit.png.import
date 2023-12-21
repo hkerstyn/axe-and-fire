@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf8swet71mfrm"
-path="res://.godot/imported/lamplit.png-8d0e04ae0a4dfdc3155b4a58ca67325d.ctex"
+uid="uid://bgmsk3xeym3jp"
+path="res://.godot/imported/unlit.png-fd92e5ce42008835435ba8088b42a007.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blender/lamplit.png"
-dest_files=["res://.godot/imported/lamplit.png-8d0e04ae0a4dfdc3155b4a58ca67325d.ctex"]
+source_file="res://palettes/unlit.png"
+dest_files=["res://.godot/imported/unlit.png-fd92e5ce42008835435ba8088b42a007.ctex"]
 
 [params]
 

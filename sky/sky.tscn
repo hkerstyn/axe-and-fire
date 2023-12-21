@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv31g6i7kgnkl"]
+
+[ext_resource type="Script" path="res://sky/sky.gd" id="1_smqvo"]
+[ext_resource type="PackedScene" uid="uid://d20f33m562imj" path="res://sky/skybox.blend" id="2_806ur"]
+
+[node name="Sky" type="Node3D"]
+script = ExtResource("1_smqvo")
+
+[node name="SkyBox" parent="." instance=ExtResource("2_806ur")]
+
+[editable path="SkyBox"]

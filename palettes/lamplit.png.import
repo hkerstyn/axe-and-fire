@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpvpwmwv0cwn"
-path="res://.godot/imported/sky.png-089453b5e15a290c3973ba42aaeee13c.ctex"
+uid="uid://bf8swet71mfrm"
+path="res://.godot/imported/lamplit.png-503d7f4edca756ce7e43b0607c721f2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sky/sky.png"
-dest_files=["res://.godot/imported/sky.png-089453b5e15a290c3973ba42aaeee13c.ctex"]
+source_file="res://palettes/lamplit.png"
+dest_files=["res://.godot/imported/lamplit.png-503d7f4edca756ce7e43b0607c721f2b.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

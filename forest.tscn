@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0jfwgg62wp2"]
-
-[ext_resource type="Material" uid="uid://dlivdbm7xdywn" path="res://flat_shader/flat_shader_material.tres" id="2_tiuhc"]
-
-[node name="tutorial"]
-
-[node name="Rock " parent="." index="2"]
-surface_material_override/0 = ExtResource("2_tiuhc")

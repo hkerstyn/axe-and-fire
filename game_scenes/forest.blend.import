@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dnk6nfpyhlxre"
-path="res://.godot/imported/goobler.blend-4493b2d04c113f3e28fe6e7c86a71462.scn"
+uid="uid://jhap8mehbk75"
+path="res://.godot/imported/forest.blend-9860336d779c55fa2b59355b7cf6d698.scn"
 
 [deps]
 
-source_file="res://blender/goobler.blend"
-dest_files=["res://.godot/imported/goobler.blend-4493b2d04c113f3e28fe6e7c86a71462.scn"]
+source_file="res://game_scenes/forest.blend"
+dest_files=["res://.godot/imported/forest.blend-9860336d779c55fa2b59355b7cf6d698.scn"]
 
 [params]
 
