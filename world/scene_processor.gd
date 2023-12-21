@@ -11,7 +11,9 @@ func process(node):
 	var name_words = node.name.split(" ", false)
 	if name_words[0] == "From":
 		From.process(node, name_words)
-	
+		
+	if name_words[0] == "To":
+		To.process(node, name_words)
 		
 	# recurse children
 	for child in node.get_children():

@@ -23,9 +23,11 @@ func load_scene(scene_path :String, parent :Node):
 # deletes the former game_scene
 # takes just the scene name as argument, not the path
 # from is where we enter the scene from
-func load_game_scene(scene_name, from=current_game_scene):
+func load_game_scene(scene_name, from=current_game_scene_name.to_pascal_case()):
 	# do it deferred because we delete the old scene
 	# this might cause trouble otherwise
+	print(scene_name+", "+from)
+
 	call_deferred("_deferred_load_game_scene", scene_name, from)
 	
 func _deferred_load_game_scene(scene_name, from):

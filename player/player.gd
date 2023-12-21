@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 @onready var animation_player = $Mesh/AnimationPlayer
 
