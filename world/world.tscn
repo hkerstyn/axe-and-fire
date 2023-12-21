@@ -8,11 +8,6 @@
 [node name="world" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.459453, 0.313201, -0.831149, 0, 0.935766, 0.352623, 0.888202, 0.162014, -0.429941, -2.38754, 1.61215, -1.22496)
-current = true
-fov = 100.353
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(0.810992, 0, 0.585057, 0, 1, 0, -0.585057, 0, 0.810992, -0.367281, 5.5465, 18.939)
 shadow_enabled = true
@@ -24,6 +19,11 @@ shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("1_0ia3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35169, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Character"]
+transform = Transform3D(-0.192556, 0.695663, -0.692081, 0, 0.705279, 0.70893, 0.981286, 0.136508, -0.135806, -2.21682, 3.26676, -0.525948)
+current = true
+fov = 100.353
 
 [node name="forest" parent="." instance=ExtResource("2_1y7bp")]
 

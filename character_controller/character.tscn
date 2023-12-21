@@ -20,4 +20,4 @@ shape = SubResource("SphereShape3D_13a5a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_r4ewe")
 
-[node name="goobler" parent="." instance=ExtResource("2_cisym")]
+[node name="Mesh" parent="." instance=ExtResource("2_cisym")]
