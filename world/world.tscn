@@ -8,7 +8,7 @@
 editor_description = "this is the scene that actually gets rendered"
 script = ExtResource("1_po6by")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.518346, -0.0395526, -0.854256, -0.673785, 0.63404, 0.379483, 0.526623, 0.772288, -0.355302, -9.91396, 18.6371, 10.724)
 shadow_enabled = true
 
@@ -16,7 +16,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35169, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(-0.192556, 0.695663, -0.692081, 0, 0.705279, 0.70893, 0.981286, 0.136508, -0.135806, -2.21682, 3.26676, -0.525948)
+transform = Transform3D(-0.192556, 0.695663, -0.69208, 0, 0.705279, 0.70893, 0.981286, 0.136509, -0.135806, -2.21682, 3.26676, -0.525948)
 current = true
 fov = 100.353
 

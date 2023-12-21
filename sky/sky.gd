@@ -1,5 +1,6 @@
 extends Node3D
 
+var rotation_speed = 1e-3
 
 func _ready():
 	var mesh = $SkyBox/Cube
@@ -16,3 +17,6 @@ func _ready():
 	
 	# set the size of the skybox to really large
 	scale = 1000.0 * Vector3.ONE
+	
+func _process(delta):
+	rotate_y(rotation_speed*delta)
