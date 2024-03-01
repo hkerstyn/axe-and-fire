@@ -1,7 +1,7 @@
 extends Node
 # singleton SceneProcessor
 
-# returns an array of all object classes
+# returns an array of all scene classes
 func get_scene_classes():
 	var files = DirAccess.get_files_at("res://scene_classes")
 	var scene_classes = []

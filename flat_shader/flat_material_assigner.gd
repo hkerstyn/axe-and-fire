@@ -1,4 +1,5 @@
 extends Node
+# singleton FlatMaterialAssigner
 
 # assigns the flat shaded material
 func assign_flat_material(node):
