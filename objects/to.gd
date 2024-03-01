@@ -19,9 +19,9 @@ func to(body :Node3D, args):
 	if not body is Player:
 		return
 		
-	var new_scene = args[1].to_snake_case()
-	if args.size() == 3:
-		var from = args[2].to_pascal_case()
+	var new_scene = args[0].to_snake_case()
+	if args.size() == 2:
+		var from = args[1].to_pascal_case()
 		SceneLoader.load_game_scene(new_scene, from)
 	else:
 		SceneLoader.load_game_scene(new_scene)

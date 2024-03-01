@@ -10,6 +10,6 @@ var player_path = "res://player/player.tscn"
 func process(node, args):
 	# check if this from is the actual from
 	# we entered the scene in
-	if args[1] == SceneLoader.from:
+	if args[0] == SceneLoader.from:
 		# create the player at from
 		SceneLoader.load_scene(player_path, node)

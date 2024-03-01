@@ -1,6 +1,14 @@
 extends Node
 # singleton SceneProcessor
 
+# returns an array of all object classes
+func get_object_classes():
+	var files = DirAccess.get_files_at("res://objects")
+	var object_classes = []
+	for file in files:
+		object_classes.push_back(file.get_basename().to_pascal_case())
+	return object_classes
+
 # do processing on any imported node
 func process(node):
 	# assign flat material
@@ -9,12 +17,13 @@ func process(node):
 		
 	# consider the words the node name is made of
 	var name_words = node.name.split(" ", false)
-	if name_words[0] == "From":
-		From.process(node, name_words)
-		
-	if name_words[0] == "To":
-		To.process(node, name_words)
-		
+	var name = name_words[0]
+	var args = name_words.slice(1)
+	
+	for object_class in get_object_classes():
+		if name == object_class:
+			get_node("/root/" + object_class).process(node, args)
+	
 	# recurse children
 	for child in node.get_children():
 		process(child)
