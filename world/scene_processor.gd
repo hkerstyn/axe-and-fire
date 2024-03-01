@@ -2,12 +2,12 @@ extends Node
 # singleton SceneProcessor
 
 # returns an array of all object classes
-func get_object_classes():
-	var files = DirAccess.get_files_at("res://objects")
-	var object_classes = []
+func get_scene_classes():
+	var files = DirAccess.get_files_at("res://scene_classes")
+	var scene_classes = []
 	for file in files:
-		object_classes.push_back(file.get_basename().to_pascal_case())
-	return object_classes
+		scene_classes.push_back(file.get_basename().to_pascal_case())
+	return scene_classes
 
 # do processing on any imported node
 func process(node):
@@ -20,9 +20,9 @@ func process(node):
 	var name = name_words[0]
 	var args = name_words.slice(1)
 	
-	for object_class in get_object_classes():
-		if name == object_class:
-			get_node("/root/" + object_class).process(node, args)
+	for scene_class in get_scene_classes():
+		if name == scene_class:
+			get_node("/root/" + scene_class).process(node, args)
 	
 	# recurse children
 	for child in node.get_children():

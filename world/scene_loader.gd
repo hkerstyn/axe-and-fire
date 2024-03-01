@@ -37,7 +37,7 @@ func _deferred_load_game_scene(scene_name, from):
 	SceneLoader.from = from
 	current_game_scene_name = scene_name
 	# figure out the scene path
-	var scene_path = "res://game_scenes/" + scene_name + ".blend"
+	var scene_path = "res://scenes/" + scene_name + ".blend"
 	current_game_scene = load_scene(scene_path, World.world)
 
 
