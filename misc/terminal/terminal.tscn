@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://5lio6hc8k4sb"]
+
+[ext_resource type="FontFile" uid="uid://ckxpdk43vs17q" path="res://misc/terminal/hpix.ttf" id="1_wpeat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ysxj"]
+bg_color = Color(0.996078, 0.976471, 0.952941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04eac"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_o2ery"]
+line_spacing = 1.0
+font = ExtResource("1_wpeat")
+font_size = 7
+font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Terminal" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 108.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_top = 90.0
+offset_right = 192.0
+offset_bottom = 131.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ysxj")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(190, 13)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_wpeat")
+theme_override_styles/normal = SubResource("StyleBoxFlat_04eac")
+text = "Sorry I'm out of fennel. My guy didn't send any. Maybe just go to him directly? He lives in Dominion."
+label_settings = SubResource("LabelSettings_o2ery")
+autowrap_mode = 3

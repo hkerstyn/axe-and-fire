@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=4 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ucdeo"]
 [ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://misc/sky/sky.tscn" id="2_ft84k"]
+[ext_resource type="PackedScene" uid="uid://5lio6hc8k4sb" path="res://misc/terminal/terminal.tscn" id="3_pwm18"]
 
 [node name="World" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
@@ -12,3 +13,14 @@ transform = Transform3D(-0.518346, -0.0395526, -0.854256, -0.673785, 0.63404, 0.
 shadow_enabled = true
 
 [node name="Sky" parent="." instance=ExtResource("2_ft84k")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 108.0
+
+[node name="Terminal" parent="UI" instance=ExtResource("3_pwm18")]
+layout_mode = 0
+offset_right = 0.0
+offset_bottom = 0.0
