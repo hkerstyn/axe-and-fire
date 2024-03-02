@@ -1,16 +1,8 @@
 extends Node
-# singleton SceneProcessor
-
-# returns an array of all scene classes
-func get_scene_classes():
-	var files = DirAccess.get_files_at("res://scene_classes")
-	var scene_classes = []
-	for file in files:
-		scene_classes.push_back(file.get_basename().to_pascal_case())
-	return scene_classes
+class_name SceneProcessor
 
 # do processing on any imported node
-func process(node):
+static func process(node):
 	# assign flat material
 	if node is MeshInstance3D:
 		FlatMaterialAssigner.assign_flat_material(node)
@@ -20,9 +12,14 @@ func process(node):
 	var name = name_words[0]
 	var args = name_words.slice(1)
 	
-	for scene_class in get_scene_classes():
-		if name == scene_class:
-			get_node("/root/" + scene_class).process(node, args)
+	# match the first word (name) against all scene classes
+	var dir = "res://scene_classes"
+	for file in DirAccess.get_files_at(dir):
+		var scene_class = file.get_basename().to_pascal_case()
+		if scene_class == name:
+			var SceneClass = load(dir + "/" + file)
+			SceneClass.process(node, args)
+			break
 	
 	# recurse children
 	for child in node.get_children():

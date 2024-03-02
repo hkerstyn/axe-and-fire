@@ -1,0 +1,143 @@
+# Action script syntax
+action script gets compiled to gdscript
+
+```
+# lines staring with # are comments
+```
+
+a line with arbitrary text just gets printed:
+```
+hello, world
+```
+
+multiple lines are printed continuously if possible,
+while there is space in the output
+if a line runs out of space before finishing,
+it starts again next time
+an empty line means that printing is stopped
+```
+this is a line
+this is quite a long line
+
+new paragraph
+```
+
+# Variables
+each action script belongs to a scene,
+this scene may have variables
+a variable is scoped like so:
+```
+scene_name_variable_name
+```
+
+there are global variables for which 
+scene_name_ is removed
+
+furthermore, scene_name_ may be omitted
+if it is the current scene
+
+variables need to be declared at the top of the file
+```
+vars:
+	my_variable
+	my_other_variable = default
+```
+
+if default is omitted, use null
+
+# Commands
+commands have the following syntax
+```
+<command> <args...>:
+	<indented body>
+```
+
+command is in snake_case
+args are separated by spaces
+the line ends in a colon :
+indented body has the same syntax as the main scope
+
+# List of commands
+## say
+```
+say <person>:
+```
+makes the indented text come from the node <person>
+person is in PascalCase
+alternatively, just use
+```
+<person>:
+```
+
+## do
+```
+do <code>:
+	<more code>
+```
+executes the code as gdscript, with the following
+alterations:
+1. 	expressions like &variable_name
+	get replaced by an expression that corresponds
+	to the appropriate variable
+2.	lines like &variable_name = <anything>
+	get replaced by a call that sets the variable
+
+## set
+```
+&<var> = <value>:
+```
+equivalent to do &<var> = <value>:
+
+
+## if
+```
+if <cond>:
+	<body>
+```
+<cond> is gdscript code that gets processed like above
+<body> is action script code that only gets evaluated
+	if <cond> evaluates to true 
+
+## prompt
+```
+prompt <message>:
+	<body>
+```
+Displays the message.
+<body> gets executed as normal except
+option commands are gathered and displayed at the end
+
+## option
+```
+option <alias> = <text>:
+	<body>
+```
+only valid within a prompt body
+displays the <text> in the selection screen
+
+if this option gets chosen,
+<body> is executed (action script)
+and the variable ans is set to <alias>
+
+if <alias> = is omitted, <text> is used instead
+
+## quit
+```
+quit:
+```
+exits the current dialog
+
+## on
+```
+on <Object>:
+	<body>
+```
+executes <body>
+when the player interacts with <Object>
+
+## trigger
+```
+trigger <Object>
+```
+triggers <Object> as if the player interacted
+with it

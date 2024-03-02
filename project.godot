@@ -16,12 +16,8 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
 
+State="*res://world/state.gd"
 SceneLoader="*res://world/scene_loader.gd"
-SceneProcessor="*res://world/scene_processor.gd"
-FlatMaterialAssigner="*res://flat_shader/flat_material_assigner.gd"
-World="*res://world/world.gd"
-From="*res://scene_classes/from.gd"
-To="*res://scene_classes/to.gd"
 
 [input]
 

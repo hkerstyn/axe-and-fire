@@ -1,43 +1,33 @@
 extends Node
 # singleton SceneLoader
 
-# responsible for instantiating a scene
-# as child of another scene
+# the parent node for location_node
+@onready var world_node :Node = $/root/Pixelizer/ViewportContainer/Viewport/World
 
-# which game scene is currently active
-var current_game_scene = null
-var current_game_scene_name = ""
+# the current location we are at
+# gets freed when entering a new location
+var location_node :Node = null
 
-# where we entered the current game scene from
-var from = ""
-
-# instantiates a scene resource path at a specific parent node
-func load_scene(scene_path :String, parent :Node):
+func load_scene(scene_path :String, parent_node :Node):
 	var scene_resource = ResourceLoader.load(scene_path)
-	var scene = scene_resource.instantiate()
-	parent.add_child(scene)
-	SceneProcessor.process(scene)
-	return scene
+	var scene_node = scene_resource.instantiate()
+	parent_node.add_child(scene_node)
+	SceneProcessor.process(scene_node)
+	return scene_node
 
-# loads a scene into world_path
-# deletes the former game_scene
-# takes just the scene name as argument, not the path
-# from is where we enter the scene from
-func load_game_scene(scene_name, from=current_game_scene_name.to_pascal_case()):
+func load_location(location, from=State.location):
 	# do it deferred because we delete the old scene
 	# this might cause trouble otherwise
-	print(scene_name+", "+from)
-
-	call_deferred("_deferred_load_game_scene", scene_name, from)
+	call_deferred("_deferred_load_location", location, from)
 	
-func _deferred_load_game_scene(scene_name, from):
-	if current_game_scene != null:
-		current_game_scene.free()
+func _deferred_load_location(location, from):
+	if location_node != null:
+		location_node.free()
 		
-	SceneLoader.from = from
-	current_game_scene_name = scene_name
+	State.from = from.to_pascal_case()
+	State.location = location.to_pascal_case()
 	# figure out the scene path
-	var scene_path = "res://scenes/" + scene_name + ".blend"
-	current_game_scene = load_scene(scene_path, World.world)
+	var location_path = "res://scenes/" + location.to_snake_case() + ".blend"
+	location_node = load_scene(location_path, world_node)
 
 

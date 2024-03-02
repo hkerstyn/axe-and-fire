@@ -4,7 +4,7 @@ extends SubViewportContainer
 func _ready():
 	# set our size and the sub viewport's size
 	# to the specified pixel size   
-	$PixelizerViewport.size = pixel_size
+	$Viewport.size = pixel_size
 	size = pixel_size
 	
 	# set the texture filter to nearest

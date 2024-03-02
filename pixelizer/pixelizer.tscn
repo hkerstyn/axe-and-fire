@@ -3,23 +3,23 @@
 [ext_resource type="Script" path="res://pixelizer/pixelizer_viewport_container.gd" id="1_8blu3"]
 [ext_resource type="PackedScene" uid="uid://tss5kskyupkk" path="res://world/world.tscn" id="2_iao7o"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Pixelizer" type="Node2D"]
 editor_description = "apply the pixelization filter
 world is the stuff that actually gets rendered
 set the pixel size in PixelizerViewportContainer"
 
-[node name="PixelizerViewportContainer" type="SubViewportContainer" parent="."]
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 192.0
 offset_bottom = 108.0
 script = ExtResource("1_8blu3")
 pixel_size = Vector2(192, 108)
 
-[node name="PixelizerViewport" type="SubViewport" parent="PixelizerViewportContainer"]
+[node name="Viewport" type="SubViewport" parent="ViewportContainer"]
 editor_description = "The size of this is "
 handle_input_locally = false
 size = Vector2i(192, 108)
 render_target_update_mode = 4
 
-[node name="World" parent="PixelizerViewportContainer/PixelizerViewport" instance=ExtResource("2_iao7o")]
+[node name="World" parent="ViewportContainer/Viewport" instance=ExtResource("2_iao7o")]
 
-[editable path="PixelizerViewportContainer/PixelizerViewport/World"]
+[editable path="ViewportContainer/Viewport/World"]
