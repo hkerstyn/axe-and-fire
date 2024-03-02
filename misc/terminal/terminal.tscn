@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://5lio6hc8k4sb"]
+[gd_scene load_steps=6 format=3 uid="uid://5lio6hc8k4sb"]
 
+[ext_resource type="Script" path="res://misc/terminal/terminal.gd" id="1_f00ay"]
 [ext_resource type="FontFile" uid="uid://ckxpdk43vs17q" path="res://misc/terminal/hpix.ttf" id="1_wpeat"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ysxj"]
@@ -21,11 +22,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 192.0
 offset_bottom = 108.0
+script = ExtResource("1_f00ay")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_top = 90.0
 offset_right = 192.0
-offset_bottom = 131.0
+offset_bottom = 108.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ysxj")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -41,6 +44,5 @@ custom_minimum_size = Vector2(190, 13)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wpeat")
 theme_override_styles/normal = SubResource("StyleBoxFlat_04eac")
-text = "Sorry I'm out of fennel. My guy didn't send any. Maybe just go to him directly? He lives in Dominion."
 label_settings = SubResource("LabelSettings_o2ery")
 autowrap_mode = 3
