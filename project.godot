@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="Axe and Fire"
-run/main_scene="res://misc/pixelizer/pixelizer.tscn"
+run/main_scene="res://misc/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
 
 State="*res://scripts/state.gd"
 SceneLoader="*res://scripts/scene_loader.gd"
+
+[display]
+
+window/size/viewport_width=192
+window/size/viewport_height=108
+window/stretch/mode="viewport"
 
 [input]
 

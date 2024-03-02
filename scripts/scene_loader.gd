@@ -2,7 +2,8 @@ extends Node
 # singleton SceneLoader
 
 # the parent node for location_node
-@onready var world_node :Node = $/root/Pixelizer/ViewportContainer/Viewport/World
+#@onready var world_node :Node = $/root/Pixelizer/ViewportContainer/Viewport/World
+@onready var world_node :Node = $/root/World
 
 # the current location we are at
 # gets freed when entering a new location
