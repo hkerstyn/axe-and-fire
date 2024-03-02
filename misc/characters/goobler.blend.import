@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d20f33m562imj"
-path="res://.godot/imported/skybox.blend-1e63fa9d9ffdd5a88d640c4cc00fe90c.scn"
+uid="uid://dnk6nfpyhlxre"
+path="res://.godot/imported/goobler.blend-acb04a2fe719c514be05bebb01a98ea3.scn"
 
 [deps]
 
-source_file="res://sky/skybox.blend"
-dest_files=["res://.godot/imported/skybox.blend-1e63fa9d9ffdd5a88d640c4cc00fe90c.scn"]
+source_file="res://misc/characters/goobler.blend"
+dest_files=["res://.godot/imported/goobler.blend-acb04a2fe719c514be05bebb01a98ea3.scn"]
 
 [params]
 
@@ -18,8 +18,8 @@ nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
-meshes/generate_lods=false
-meshes/create_shadow_meshes=false
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://tss5kskyupkk"]
 
-[ext_resource type="Script" path="res://world/game.gd" id="1_yhb1r"]
-[ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://sky/sky.tscn" id="2_ylh0b"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_ucdeo"]
+[ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://misc/sky/sky.tscn" id="2_ft84k"]
 
 [node name="World" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
-script = ExtResource("1_yhb1r")
+script = ExtResource("1_ucdeo")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.518346, -0.0395526, -0.854256, -0.673785, 0.63404, 0.379483, 0.526623, 0.772288, -0.355302, -9.91396, 18.6371, 10.724)
 shadow_enabled = true
 
-[node name="Sky" parent="." instance=ExtResource("2_ylh0b")]
+[node name="Sky" parent="." instance=ExtResource("2_ft84k")]

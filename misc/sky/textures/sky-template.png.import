@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgmsk3xeym3jp"
-path="res://.godot/imported/unlit.png-fd92e5ce42008835435ba8088b42a007.ctex"
+uid="uid://vyi5rw2ahw0d"
+path="res://.godot/imported/sky-template.png-a3b1393cfa818c6d63aba07146b3ce31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/unlit.png"
-dest_files=["res://.godot/imported/unlit.png-fd92e5ce42008835435ba8088b42a007.ctex"]
+source_file="res://misc/sky/textures/sky-template.png"
+dest_files=["res://.godot/imported/sky-template.png-a3b1393cfa818c6d63aba07146b3ce31.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

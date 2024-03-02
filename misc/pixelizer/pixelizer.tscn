@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpkjuekrshl27"]
 
-[ext_resource type="Script" path="res://pixelizer/pixelizer_viewport_container.gd" id="1_8blu3"]
-[ext_resource type="PackedScene" uid="uid://tss5kskyupkk" path="res://world/world.tscn" id="2_iao7o"]
+[ext_resource type="Script" path="res://misc/pixelizer/pixelizer_viewport_container.gd" id="1_8blu3"]
+[ext_resource type="PackedScene" uid="uid://tss5kskyupkk" path="res://misc/world.tscn" id="2_iao7o"]
 
 [node name="Pixelizer" type="Node2D"]
 editor_description = "apply the pixelization filter
