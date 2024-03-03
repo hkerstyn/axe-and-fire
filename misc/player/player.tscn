@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvtu017de2m6t"]
 
 [ext_resource type="Script" path="res://misc/player/player.gd" id="1_4efss"]
-[ext_resource type="PackedScene" uid="uid://dnk6nfpyhlxre" path="res://misc/characters/goobler.blend" id="2_cisym"]
+[ext_resource type="PackedScene" uid="uid://bnabqgap0jqgy" path="res://misc/characters/elaine1.blend" id="2_2advc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13a5a"]
 radius = 0.3
@@ -21,9 +21,11 @@ shape = SubResource("SphereShape3D_13a5a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_r4ewe")
 
-[node name="Mesh" parent="." instance=ExtResource("2_cisym")]
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.192556, 0.695663, -0.69208, 0, 0.705279, 0.70893, 0.981286, 0.136509, -0.135806, -2.21682, 3.26676, -0.525948)
 current = true
 fov = 100.353
+near = 0.1
+far = 1000.0
+
+[node name="Mesh" parent="." instance=ExtResource("2_2advc")]
