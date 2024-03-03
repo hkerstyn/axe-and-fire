@@ -9,6 +9,12 @@ var jump_count = 0
 var speed = 4
 var fall_acceleration = 75
 
+var scale_animation_player
+
+func play_animation(state):
+	var state_machine = $AnimationTree["parameters/StateMachine/playback"]
+	state_machine.travel(state)
+
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
@@ -30,11 +36,11 @@ func _physics_process(delta):
 		direction -= up_dir
 		
 	if direction != Vector3.ZERO:
+		play_animation("Walk")
 		direction = direction.normalized()
-		animation_player.play("Walk", 0.5, 2.0)
 		$Mesh.look_at(position-direction)
 	else:
-		animation_player.play("Idle", 0.5)
+		play_animation("Idle")
 	
 
 	
@@ -45,8 +51,4 @@ func _physics_process(delta):
 			
 	velocity.y += -fall_acceleration*delta
 	move_and_slide()
-	
-	if velocity.y > 0.3:
-		animation_player.play("Jump")
-	
 
