@@ -45,8 +45,10 @@ func _physics_process(delta):
 			
 	velocity.y += -fall_acceleration*delta
 	move_and_slide()
-	
-	if velocity.y > 0.3:
-		animation_player.play("Jump")
+		
+	if Input.is_action_just_pressed("use"):
+		for area in $Mesh/ExecArea.get_overlapping_areas():
+			if area is Exec:
+				area.exec()
 	
 

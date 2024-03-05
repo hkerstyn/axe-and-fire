@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://doq8m768nhy0j"]
+[gd_scene load_steps=6 format=3 uid="uid://doq8m768nhy0j"]
 
 [ext_resource type="Script" path="res://misc/player/player.gd" id="1_4efss"]
 [ext_resource type="PackedScene" uid="uid://bnabqgap0jqgy" path="res://scenes/elaine_1.blend" id="2_2advc"]
@@ -8,6 +8,9 @@ radius = 0.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4ewe"]
 size = Vector3(0.3, 2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lk772"]
+size = Vector3(1, 2, 1)
 
 [node name="Player" type="CharacterBody3D"]
 top_level = true
@@ -29,3 +32,9 @@ near = 0.1
 far = 1000.0
 
 [node name="Mesh" parent="." instance=ExtResource("2_2advc")]
+
+[node name="ExecArea" type="Area3D" parent="Mesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ExecArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02969, 0.671477)
+shape = SubResource("BoxShape3D_lk772")

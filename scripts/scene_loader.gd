@@ -14,6 +14,7 @@ func load_scene(scene :String):
 	var scene_path = "res://scenes/" + scene.to_snake_case() + ".blend"
 	var scene_resource = ResourceLoader.load(scene_path)
 	var scene_node = scene_resource.instantiate()
+	scene_node.name = scene.to_pascal_case()
 	SceneProcessor.process(scene_node)
 	return scene_node
 
