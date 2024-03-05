@@ -1,5 +1,4 @@
 extends Node
-class_name From
 
 # a From node is where the player enters the scene
 
@@ -12,4 +11,5 @@ static func process(node, args):
 	# we entered the scene in
 	if args[0].to_pascal_case() == State.from:
 		# create the player at from
-		SceneLoader.load_scene(player_path, node)
+		var Player = ResourceLoader.load(player_path)
+		node.add_child(Player.instantiate())

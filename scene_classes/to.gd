@@ -1,5 +1,5 @@
-extends Node
 class_name To
+extends Node
 
 static func process(node, args):
 	var area = Area3D.new()

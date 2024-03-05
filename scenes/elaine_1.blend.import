@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bnabqgap0jqgy"
-path="res://.godot/imported/elaine1.blend-1408ecf063b95f27518b0064668709e9.scn"
+path="res://.godot/imported/elaine_1.blend-e7198a97dae1fd0ccb3a77aa56ee8c4a.scn"
 
 [deps]
 
-source_file="res://misc/characters/elaine1.blend"
-dest_files=["res://.godot/imported/elaine1.blend-1408ecf063b95f27518b0064668709e9.scn"]
+source_file="res://scenes/elaine_1.blend"
+dest_files=["res://.godot/imported/elaine_1.blend-e7198a97dae1fd0ccb3a77aa56ee8c4a.scn"]
 
 [params]
 

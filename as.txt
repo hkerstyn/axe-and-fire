@@ -40,10 +40,8 @@ variables need to be declared at the top of the file
 ```
 vars:
 	my_variable
-	my_other_variable = default
+	my_other_variable
 ```
-
-if default is omitted, use null
 
 # Commands
 commands have the following syntax
@@ -60,14 +58,10 @@ indented body has the same syntax as the main scope
 # List of commands
 ## say
 ```
-say <person>:
+<person>:
 ```
 makes the indented text come from the node <person>
 person is in PascalCase
-alternatively, just use
-```
-<person>:
-```
 
 ## do
 ```
@@ -75,12 +69,10 @@ do <code>:
 	<more code>
 ```
 executes the code as gdscript, with the following
-alterations:
-1. 	expressions like &variable_name
+alteration:
+ 	expressions like &variable_name
 	get replaced by an expression that corresponds
 	to the appropriate variable
-2.	lines like &variable_name = <anything>
-	get replaced by a call that sets the variable
 
 ## set
 ```
