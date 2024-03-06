@@ -1,6 +1,9 @@
 class_name Exec
 extends Area3D
 
+# exec() gets executed upon player interaction
+
+# adds an exec to a node
 static func add(node :Node):
 	var exec = Exec.new()
 	var collision_shape = CollisionShape3D.new()

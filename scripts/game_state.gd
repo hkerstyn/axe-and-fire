@@ -14,3 +14,9 @@ var location :String
 # might not be an actual location
 var from :String
 
+func get_addr(var_name :String):
+	if var_name in self:
+		return "GameState[\"" + var_name + "\"]"
+	if var_name in data:
+		return "GameState.data[\"" + var_name + "\"]"
+	return ""

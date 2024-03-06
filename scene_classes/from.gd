@@ -9,7 +9,7 @@ const player_path = "res://misc/player/player.tscn"
 static func process(node, args):
 	# check if this from is the actual from
 	# we entered the scene in
-	if args[0].to_pascal_case() == State.from:
+	if args[0].to_pascal_case() == GameState.from:
 		# create the player at from
 		var Player = ResourceLoader.load(player_path)
 		node.add_child(Player.instantiate())

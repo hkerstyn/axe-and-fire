@@ -3,6 +3,7 @@ class_name Game
 
 func _ready():
 	SceneLoader.load_location("Forest", "Spawn")
+	ActionScript.load("test").exec()
 
 
 func _process(_delta):

@@ -1,0 +1,73 @@
+vars:
+	bad_answer
+
+if &bad_answer:
+	Fuck off.
+	quit:
+
+if &player.has("sheep_coin"):
+	Greetings, dear sister.
+	Our siblings in Aries await you.
+	Glory to Cathebes!
+	quit:
+
+Are you a true Cathebian?
+option yes = Yes:
+option no = No:
+option what = What is that?:
+option cathedrian = Don't you mean Cathedrian?:
+option demestrian = I'm demestrian actually:
+
+
+if &ans in ["no", "demestrian"]:
+	Then fuck off.
+	&bad_answer = true:
+	quit:
+
+if &ans in ["what", "cathedrian"]:
+	Well as you know,
+	our great country is called Cathebes.
+	"Cathedrial" is the name
+	our Dommestrian opressors gave it.
+	&knows_cathebes = true
+
+	So I ask you again,
+	are you a true Cathebian?
+	option yes = Yes:
+	option no = No:
+		Then get the hell outta here!
+		&bad_answer = true
+		quit:
+
+	option Don't you mean Demestrian?:
+		Oh yeah, they call themselves that now.
+		Anyway, thanks to their little revolution,
+		all their pissy nobles fled here
+		and we have to suffer through their bullshit.
+		&knows_duchess_is_demestrian = true
+
+	if &knows_iris_conflict:
+		option You mean the Iris conflict?:
+			What? No.
+			The worst oppressor is the Duchess
+			and all the other inbred dommestrian nobles
+			that came here after the revolution.
+			&knows_duchess_is_demestrian = true
+
+	if &time == "night":
+		option Don't you get cold?:
+			The wish for freedom keeps me awake at night.
+	if not &ans == "yes":
+		So one last time.
+		Are you a true Cathebian?
+		option yes = Yes:
+		option no = No:
+			Then quit wasting my time.
+			&bad_answer = true
+			quit:
+
+Awesome!
+If you want to help free this country,
+go to Aries and talk to my brothers and sisters there.
+Take this!
+do &player.give("sheep_coin"):

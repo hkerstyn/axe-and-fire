@@ -1,7 +1,7 @@
 Dad: Phillip Farther
-Grandpa: Trenton Farther
-Lawyers: Hugo Cupped, Elizabeth Sabre
+Grandpa: Trentyn Farther
+Lawyers: Hugo Cupped, Elesibeth Sabre
 
-Dutchess: Dutchess Anastasia of Cathedral
-Prince: Prince Marcus of Demestry
+Duchess: Duchess Aurelia of Cathedrial
+Prince: Prince Markus of Demestry
 Ambassador: Dr. Benedict Mandlebrot
