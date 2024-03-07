@@ -71,7 +71,7 @@ static func replace(regex_match, line, replacement):
 #region exec_as
 # runs this ActionScript
 func exec():
-	await exec_lines(lines)
+	await exec_lines(lines.duplicate())
 	await Global.new_page()
 
 # executes the given lines in ActionScript

@@ -2,6 +2,7 @@ class_name Exec
 extends Area3D
 
 # exec() gets executed upon player interaction
+var action_script :String
 
 # adds an exec to a node
 static func add(node :Node):
@@ -17,6 +18,10 @@ static func add(node :Node):
 	collision_shape.set_shape(shape)
 	exec.add_child(collision_shape)
 	node.add_child(exec)
+	return exec
+
+func set_action_script(action_script :String):
+	self.action_script = action_script
 
 func exec():
-	print("exec!")
+	await ActionScript.load(action_script).exec()

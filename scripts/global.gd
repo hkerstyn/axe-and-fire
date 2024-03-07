@@ -17,3 +17,6 @@ func print(text):
 
 func new_page():
 	return await terminal_node.new_page()
+
+func find(node_name):
+	return world_node.find_child(node_name, true, false)

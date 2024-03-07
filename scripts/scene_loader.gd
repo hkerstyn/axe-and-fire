@@ -19,13 +19,8 @@ func load_scene(scene :String):
 	return scene_node
 
 func load_location(location, from=GameState.location):
-	# do it deferred because we delete the old scene
-	# this might cause trouble otherwise
-	call_deferred("_deferred_load_location", location, from)
-	
-func _deferred_load_location(location, from):
 	if location_node != null:
-		location_node.free()
+		location_node.queue_free()
 		
 	GameState.from = from.to_pascal_case()
 	GameState.location = location.to_pascal_case()
