@@ -12,7 +12,7 @@ var lines :Array
 var scene :String
 
 # the arguments our scene was invoked in
-var args :PackedStringArray = []
+var args :Array = []
 
 # whether or not the last if condition
 # evaluated to true
@@ -39,8 +39,20 @@ func exec_lines(lines :Array):
 	while not lines.is_empty():
 		var line = lines.pop_front().strip_edges()
 		
+		if line.is_empty():
+			continue
+		
+		if line.begins_with("#"):
+			continue
+		
 		if line.begins_with("&"):
 			exec_godot([line])
+			continue
+			
+		line = subst_line(line)
+			
+		if line.begins_with("@"):
+			exec_scene_line(line)
 			continue
 			
 		if not line.ends_with(":"):
@@ -57,6 +69,21 @@ func exec_lines(lines :Array):
 			cmd_arg = cmd
 		
 		call(cmd_method, cmd_arg, Parser.get_indent(lines))
+
+func subst_line(line):
+	var regex = RegEx.new()
+	regex.compile("{.*}")
+	while true:
+		var regex_match = regex.search(line)
+		if regex_match == null:
+			break
+			
+		var exp = regex_match.get_string() \
+			.trim_prefix("{").trim_suffix("}")
+		var value = eval_godot(exp)
+		
+		line = Parser.replace(regex_match, line, str(value))
+	return line 
 
 func cmd_do(cmd_arg, lines):
 	exec_godot([cmd_arg]+lines)
@@ -75,6 +102,9 @@ func exec_godot(code :Array):
 		gd_code += "\t" + line + "\n"
 	
 	return Parser.exec_godot(gd_code, self)
+	
+func eval_godot(exp:String):
+	return exec_godot(["return "+exp])
 
 # replaces all &variables with
 # actual valid expressions
@@ -82,9 +112,12 @@ func process_godot_line(line :String):
 	# search for variables
 	var regex = RegEx.new()
 	regex.compile("&[a-z0-9_]+")
-	for regex_match in regex.search_all(line):
-		# extract the variable name, ie remove &
-		var var_name = regex_match.get_string().right(-1)
+	while true:
+		var regex_match = regex.search(line)
+		if regex_match == null:
+			break
+			
+		var var_name = regex_match.get_string().trim_prefix("&")
 	
 		# figure out an address for the variable
 		# ie a bit of godot code 
@@ -111,9 +144,8 @@ func process_godot_line(line :String):
 		# replace the &variable expression with the address
 		line = Parser.replace(regex_match, line, var_addr)
 	return line
-	
-# declare local variables
-func cmd_vars(cmd_arg, lines):
+
+func init_vars(lines, assign_values):
 	for line in lines:
 		if line.is_empty():
 			continue
@@ -122,15 +154,26 @@ func cmd_vars(cmd_arg, lines):
 		var pair = line.split("=", false, 2)
 		var var_name = scene + "_" + pair[0].strip_edges()
 		
-		# check if the variable already exists
+		# if the variable doesnt exist,
+		# set it to the default value false
 		if not GameState.data.has(var_name):
-			# if not, let the default value be false
 			GameState.data[var_name] = false
 			
 			# unless an explicit value has been provided
 			if pair.size() == 2:
 				var value = pair[1]
 				exec_godot(["&" + var_name + "="+value])
+		
+		# if an assign_value has been provided,
+		# assign it instead
+		if not assign_values.is_empty():
+			GameState.data[var_name] = assign_values.pop_front()
+
+func cmd_args(cmd_arg, lines):
+	init_vars(lines, args)
+	
+func cmd_vars(cmd_arg, lines):
+	init_vars(lines, [])
 
 # displays the unhandled options
 func flush_options():
@@ -150,7 +193,16 @@ func cmd_option(cmd_arg, lines):
 	option.lines = lines
 	
 	options.push_back(option)
-	
+
+func exec_scene_line(line :String):
+	line = line.trim_prefix("@")
+	var words = line.split(" ", false)
+	var scene = words[0]
+	var action_script = ActionScript.load(scene)
+	action_script.args = words.slice(1)
+	await action_script.exec()
+	options += action_script.options
+
 # executes the lines
 # but restores if_state to its original afterwards
 # to deal with nested ifs
@@ -160,7 +212,7 @@ func if_safe_exec_lines(lines):
 	if_state = old_if_state
 
 func cmd_if(cmd_arg, lines):
-	if_state = exec_godot(["return "+cmd_arg])
+	if_state = eval_godot(cmd_arg)
 	
 	if if_state == true:
 		if_safe_exec_lines(lines)

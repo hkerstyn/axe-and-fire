@@ -18,7 +18,7 @@ static func get_indent(lines :Array):
 	var indented_lines = []
 	while not lines.is_empty():
 		if is_indented(lines[0]):
-			var line = lines.pop_front().right(-1)
+			var line = lines.pop_front().trim_prefix("\t")
 			indented_lines.push_back(line)
 		else:
 			break
@@ -32,7 +32,7 @@ static func is_indented(line :String):
 # syntax: cmd cmd_arg:
 # returns [cmd, cmd_arg]
 static func split_cmd(line :String):
-	var pair = line.left(-1).split(" ", false, 1)
+	var pair = line.trim_suffix(":").split(" ", false, 1)
 	if pair.size() == 1:
 		pair.push_back("")
 	return pair

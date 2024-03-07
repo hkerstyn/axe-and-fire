@@ -1,19 +1,4 @@
 vars:
 	test
-	
-if &test:
-	This should'nt happen
-else:
-	if 2+2==5:
-		Radiohead was right
-	elif 2+2==6:
-		Radiohead was optimistic
-	elif 2+2==4:
-		Radiohead was almost right
-		if "cake".begins_with("c"):
-			cake starts with c
-	elif 2+2==7:
-		Radiohead was very optimistic
-	else:
-		Radiohead was wrong
 
+@call {1+1}

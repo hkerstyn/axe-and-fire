@@ -70,4 +70,43 @@ Awesome!
 If you want to help free this country,
 go to Aries and talk to my brothers and sisters there.
 Take this!
-do &player.give("sheep_coin"):
+&player.give("sheep_coin")
+
+on Door:
+	@wittness_inside
+	@locked 1
+	if &eavesdrop:
+		You hear nothing.
+
+What do you want to buy?
+@sell potatoes 13
+@sell tomatoes 17
+if &options.is_empty():
+	Sorry, I don't actually have anything left.
+	quit:
+@quit
+
+
+option quit = Nevermind.:
+	quit:
+
+args:
+	item
+	price
+	amount = 1
+vars:
+	sold = {}
+
+if not &sold.has(&item):
+	&sold[&item] = 0
+
+if &sold[&item] > &amount:
+	return:
+
+option {&item} = {&desc(&item)} ({&price}cc):
+	&bought = &pay(&price) 
+	if &bought:
+		&sold[&item] += 1
+		&player.give(&item)
+	else:
+		@print not enough money

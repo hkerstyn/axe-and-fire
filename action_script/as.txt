@@ -76,7 +76,7 @@ alteration:
 
 ## set
 ```
-&<var> = <value>:
+&<var> = <value>
 ```
 equivalent to do &<var> = <value>:
 
@@ -90,21 +90,11 @@ if <cond>:
 <body> is action script code that only gets evaluated
 	if <cond> evaluates to true 
 
-## prompt
-```
-prompt <message>:
-	<body>
-```
-Displays the message.
-<body> gets executed as normal except
-option commands are gathered and displayed at the end
-
 ## option
 ```
 option <alias> = <text>:
 	<body>
 ```
-only valid within a prompt body
 displays the <text> in the selection screen
 
 if this option gets chosen,
@@ -126,10 +116,3 @@ on <Object>:
 ```
 executes <body>
 when the player interacts with <Object>
-
-## trigger
-```
-trigger <Object>
-```
-triggers <Object> as if the player interacted
-with it
