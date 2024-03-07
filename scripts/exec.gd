@@ -24,4 +24,5 @@ func set_action_script(action_script :String):
 	self.action_script = action_script
 
 func exec():
+	GameState.speaker = get_parent().name
 	await ActionScript.load(action_script).exec()

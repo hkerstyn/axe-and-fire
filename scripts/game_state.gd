@@ -17,6 +17,9 @@ var from :String
 # the answer from the last prompt
 var ans
 
+# the one speaking currently
+var speaker = null
+
 func get_addr(var_name :String):
 	if var_name in self:
 		return "GameState[\"" + var_name + "\"]"

@@ -12,5 +12,11 @@ static func process(node, args):
 	# plays the idle animation
 	character.get_node("AnimationPlayer").play("Idle")
 	
+	var mouth = Node3D.new()
+	mouth.name = "Mouth"
+	character.add_child(mouth)
+	mouth.position.y += 1.5
+	
 	# add it to the node
 	Spawn.reduce(node).add_child(character)
+	

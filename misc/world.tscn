@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=7 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ucdeo"]
 [ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://misc/sky/sky.tscn" id="2_ft84k"]
 [ext_resource type="Theme" uid="uid://dcs4vrsqwgq5k" path="res://misc/ui/theme.tres" id="3_7nyhg"]
 [ext_resource type="PackedScene" uid="uid://5lio6hc8k4sb" path="res://misc/ui/terminal.tscn" id="3_pwm18"]
 [ext_resource type="PackedScene" uid="uid://co8yl3pyfugrr" path="res://misc/ui/prompt.tscn" id="5_v3mba"]
+[ext_resource type="Script" path="res://misc/ui/speech_thingy.gd" id="6_frr1w"]
 
 [node name="World" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
@@ -27,6 +28,9 @@ theme = ExtResource("3_7nyhg")
 layout_mode = 0
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="SpeechThingy" type="Polygon2D" parent="UI/Terminal"]
+script = ExtResource("6_frr1w")
 
 [node name="Prompt" parent="UI" instance=ExtResource("5_v3mba")]
 layout_mode = 1

@@ -24,7 +24,7 @@ shape = SubResource("SphereShape3D_13a5a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_r4ewe")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(-0.183986, 0.786526, -0.589513, 0, 0.599752, 0.800186, 0.982929, 0.147223, -0.110346, -3.74327, 5.08099, -0.700671)
 current = true
 fov = 70.0

@@ -24,6 +24,9 @@ var options = []
 # whether execution should quit or not
 var quit = false
 
+# whether the current speaker has been mentioned yet
+var mentioned_speaker = false
+
 #region load
 # creates a new ActionScript object from 
 # a scene name
@@ -71,6 +74,7 @@ static func replace(regex_match, line, replacement):
 #region exec_as
 # runs this ActionScript
 func exec():
+	set_speaker(GameState.speaker)
 	await exec_lines(lines.duplicate())
 	await Global.new_page()
 
@@ -100,6 +104,8 @@ func exec_lines(lines :Array):
 			await flush_options()
 			if quit:
 				return
+			if not mentioned_speaker:
+				await mention_speaker()
 			await Global.print(line)
 			continue
 				
@@ -320,5 +326,26 @@ func cmd_elif(cmd_arg, lines):
 		await cmd_if(cmd_arg, lines)
 #endregion
 
+#region say
+func mention_speaker():
+	if GameState.speaker:
+		await Global.print(Global.name(GameState.speaker) + ": ")
+	mentioned_speaker = true
+
+static func set_speaker(speaker):
+	Global.set_speech_origin(speaker)
+	GameState.speaker = speaker
+	
+func cmd_say(speaker, lines):
+	var old_speaker = GameState.speak
+	set_speaker(speaker)
+	if old_speaker != speaker:
+		mentioned_speaker = false
+	await exec_lines(lines)
+	set_speaker(old_speaker)
+	
+	
+	
+#endregion
 func cmd_quit(_cmd_arg, _lines):
 	quit = true
