@@ -4,12 +4,7 @@ vars:
 if &bad_answer:
 	Fuck off.
 	quit:
-
-if &player.has("sheep_coin"):
-	Greetings, dear sister.
-	Our siblings in Aries await you.
-	Glory to Cathebes!
-	quit:
+	
 
 Are you a true Cathebian?
 option yes = Yes:
@@ -17,11 +12,11 @@ option no = No:
 option what = What is that?:
 option cathedrian = Don't you mean Cathedrian?:
 option demestrian = I'm demestrian actually:
-
+flush:
 
 if &ans in ["no", "demestrian"]:
 	Then fuck off.
-	&bad_answer = true:
+	&bad_answer = true
 	quit:
 
 if &ans in ["what", "cathedrian"]:
@@ -29,7 +24,6 @@ if &ans in ["what", "cathedrian"]:
 	our great country is called Cathebes.
 	"Cathedrial" is the name
 	our Dommestrian opressors gave it.
-	&knows_cathebes = true
 
 	So I ask you again,
 	are you a true Cathebian?
@@ -44,17 +38,17 @@ if &ans in ["what", "cathedrian"]:
 		Anyway, thanks to their little revolution,
 		all their pissy nobles fled here
 		and we have to suffer through their bullshit.
-		&knows_duchess_is_demestrian = true
 
-	if &knows_iris_conflict:
+
+	if true:
 		option You mean the Iris conflict?:
 			What? No.
 			The worst oppressor is the Duchess
 			and all the other inbred dommestrian nobles
 			that came here after the revolution.
-			&knows_duchess_is_demestrian = true
 
-	if &time == "night":
+
+	if true:
 		option Don't you get cold?:
 			The wish for freedom keeps me awake at night.
 	if not &ans == "yes":
@@ -70,43 +64,5 @@ Awesome!
 If you want to help free this country,
 go to Aries and talk to my brothers and sisters there.
 Take this!
-&player.give("sheep_coin")
-
-on Door:
-	@wittness_inside
-	@locked 1
-	if &eavesdrop:
-		You hear nothing.
-
-What do you want to buy?
-@sell potatoes 13
-@sell tomatoes 17
-if &options.is_empty():
-	Sorry, I don't actually have anything left.
-	quit:
-@quit
 
 
-option quit = Nevermind.:
-	quit:
-
-args:
-	item
-	price
-	amount = 1
-vars:
-	sold = {}
-
-if not &sold.has(&item):
-	&sold[&item] = 0
-
-if &sold[&item] > &amount:
-	return:
-
-option {&item} = {&desc(&item)} ({&price}cc):
-	&bought = &pay(&price) 
-	if &bought:
-		&sold[&item] += 1
-		&player.give(&item)
-	else:
-		@print not enough money

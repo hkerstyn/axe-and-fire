@@ -14,6 +14,9 @@ var location :String
 # might not be an actual location
 var from :String
 
+# the answer from the last prompt
+var ans
+
 func get_addr(var_name :String):
 	if var_name in self:
 		return "GameState[\"" + var_name + "\"]"

@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dcs4vrsqwgq5k"]
+
+[ext_resource type="FontFile" uid="uid://ckxpdk43vs17q" path="res://misc/ui/hpix.ttf" id="1_hkbwr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112wp"]
+bg_color = Color(0.952941, 0.945098, 0.909804, 1)
+
+[resource]
+default_font = ExtResource("1_hkbwr")
+default_font_size = 7
+Label/colors/font_color = Color(0.0941176, 0.0666667, 0.0313726, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_112wp")

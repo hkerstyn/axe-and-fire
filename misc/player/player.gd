@@ -10,6 +10,7 @@ var speed = 4
 var fall_acceleration = 75
 
 func _physics_process(delta):
+	return
 	if is_on_floor():
 		jump_count = 0
 		if Input.is_action_just_pressed("jump"):

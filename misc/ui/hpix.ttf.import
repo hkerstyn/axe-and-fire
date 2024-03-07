@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://ckxpdk43vs17q"
-path="res://.godot/imported/hpix.ttf-28fd2184f1656a2fa966fb1f3bbb7d34.fontdata"
+path="res://.godot/imported/hpix.ttf-5727ce5dd9c13d65bc378673b4bd660c.fontdata"
 
 [deps]
 
-source_file="res://misc/terminal/hpix.ttf"
-dest_files=["res://.godot/imported/hpix.ttf-28fd2184f1656a2fa966fb1f3bbb7d34.fontdata"]
+source_file="res://misc/ui/hpix.ttf"
+dest_files=["res://.godot/imported/hpix.ttf-5727ce5dd9c13d65bc378673b4bd660c.fontdata"]
 
 [params]
 

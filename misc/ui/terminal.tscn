@@ -1,19 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://5lio6hc8k4sb"]
+[gd_scene load_steps=6 format=3 uid="uid://5lio6hc8k4sb"]
 
-[ext_resource type="Script" path="res://misc/terminal/terminal.gd" id="1_f00ay"]
-[ext_resource type="FontFile" uid="uid://ckxpdk43vs17q" path="res://misc/terminal/hpix.ttf" id="1_wpeat"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yte3n"]
-bg_color = Color(0.988235, 0.968627, 0.909804, 1)
-corner_detail = 1
+[ext_resource type="Script" path="res://misc/ui/terminal.gd" id="1_f00ay"]
+[ext_resource type="FontFile" uid="uid://ckxpdk43vs17q" path="res://misc/ui/hpix.ttf" id="1_wpeat"]
+[ext_resource type="Theme" uid="uid://dcs4vrsqwgq5k" path="res://misc/ui/theme.tres" id="2_x0wl5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7tee"]
 bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04eac"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(0.109804, 0.109804, 0.109804, 1)
-corner_detail = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_o2ery"]
 line_spacing = 1.0
@@ -31,10 +23,10 @@ script = ExtResource("1_f00ay")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
-offset_top = 90.0
+offset_top = 91.0
 offset_right = 192.0
-offset_bottom = 108.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yte3n")
+offset_bottom = 109.0
+theme = ExtResource("2_x0wl5")
 
 [node name="NodSymbol" type="Panel" parent="."]
 visible = false
@@ -48,12 +40,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c7tee")
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(184, 13)
 layout_mode = 2
-offset_left = 1.0
-offset_top = 92.0
-offset_right = 185.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_wpeat")
-theme_override_styles/normal = SubResource("StyleBoxFlat_04eac")
+offset_left = 2.0
+offset_top = 93.0
+offset_right = 186.0
+offset_bottom = 106.0
+theme = ExtResource("2_x0wl5")
 label_settings = SubResource("LabelSettings_o2ery")
 autowrap_mode = 3

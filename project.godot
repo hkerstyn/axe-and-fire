@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 SceneLoader="*res://scripts/scene_loader.gd"
 GameState="*res://scripts/game_state.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 

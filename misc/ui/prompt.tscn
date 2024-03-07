@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://co8yl3pyfugrr"]
+
+[ext_resource type="Script" path="res://misc/ui/prompt.gd" id="1_rl7ou"]
+[ext_resource type="Theme" uid="uid://dcs4vrsqwgq5k" path="res://misc/ui/theme.tres" id="1_vd8sx"]
+
+[node name="Prompt" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rl7ou")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+theme = ExtResource("1_vd8sx")
+
+[node name="Options" type="Label" parent="."]
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 11.0
+theme = ExtResource("1_vd8sx")
+
+[node name="Selector" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 7.0
+theme = ExtResource("1_vd8sx")

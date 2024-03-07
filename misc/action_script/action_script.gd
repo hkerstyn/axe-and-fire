@@ -21,6 +21,9 @@ var if_state = false
 # the unprocessed options 
 var options = []
 
+# whether execution should quit or not
+var quit = false
+
 #region load
 # creates a new ActionScript object from 
 # a scene name
@@ -68,7 +71,8 @@ static func replace(regex_match, line, replacement):
 #region exec_as
 # runs this ActionScript
 func exec():
-	exec_lines(lines)
+	await exec_lines(lines)
+	await Global.new_page()
 
 # executes the given lines in ActionScript
 func exec_lines(lines :Array):
@@ -76,23 +80,27 @@ func exec_lines(lines :Array):
 		var line = lines.pop_front().strip_edges()
 		
 		if line.is_empty():
+			await Global.new_page()
 			continue
 		
 		if line.begins_with("#"):
 			continue
 		
 		if line.begins_with("&"):
-			exec_godot([line])
+			await exec_godot([line])
 			continue
 			
-		line = subst_brace_exps(line)
+		line = await subst_brace_exps(line)
 			
 		if line.begins_with("@"):
-			exec_scene_line(line)
+			await exec_scene_line(line)
 			continue
 			
 		if not line.ends_with(":"):
-			print(line)
+			await flush_options()
+			if quit:
+				return
+			await Global.print(line)
 			continue
 				
 		var cmd_with_arg = split_cmd(line)
@@ -104,7 +112,9 @@ func exec_lines(lines :Array):
 			cmd_method = "cmd_say"
 			cmd_arg = cmd
 		
-		call(cmd_method, cmd_arg, get_indent(lines))
+		await call(cmd_method, cmd_arg, get_indent(lines))
+		if quit:
+			return
 
 # splits a command line into the command name
 # and the command argument
@@ -124,6 +134,7 @@ func exec_scene_line(line :String):
 	action_script.args = words.slice(1)
 	await action_script.exec()
 	options += action_script.options
+	quit = action_script.quit
 #endregion
 
 
@@ -138,7 +149,7 @@ func subst_brace_exps(line):
 			
 		var exp = regex_match.get_string() \
 			.trim_prefix("{").trim_suffix("}")
-		var value = eval_godot(exp)
+		var value = await eval_godot(exp)
 		
 		line = replace(regex_match, line, str(value))
 	return line 
@@ -186,7 +197,7 @@ func subst_vars(line :String):
 
 #region exec_godot
 func cmd_do(cmd_arg, lines):
-	exec_godot([cmd_arg]+lines)
+	await exec_godot([cmd_arg]+lines)
 
 
 # executes lines of godot code
@@ -208,11 +219,12 @@ func exec_godot(code :Array):
 	var ref = RefCounted.new()
 	ref.set_script(script)
 	ref["action_script"] = self
-	return ref.call("eval")
+	return await ref.call("eval")
+
 
 
 func eval_godot(exp:String):
-	return exec_godot(["return "+exp])
+	return await exec_godot(["return "+exp])
 #endregion
 
 
@@ -234,7 +246,7 @@ func init_vars(lines, assign_values):
 			# unless an explicit value has been provided
 			if pair.size() == 2:
 				var value = pair[1]
-				exec_godot(["&" + var_name + "="+value])
+				await exec_godot(["&" + var_name + "="+value])
 		
 		# if an assign_value has been provided,
 		# assign it instead
@@ -242,10 +254,10 @@ func init_vars(lines, assign_values):
 			GameState.data[var_name] = assign_values.pop_front()
 
 func cmd_args(cmd_arg, lines):
-	init_vars(lines, args)
+	await init_vars(lines, args)
 	
 func cmd_vars(cmd_arg, lines):
-	init_vars(lines, [])
+	await init_vars(lines, [])
 #endregion
 
 
@@ -254,16 +266,29 @@ func cmd_vars(cmd_arg, lines):
 func flush_options():
 	if options.is_empty():
 		return
+	
+	await Global.new_page()
+	var option_texts = []
 	for option in options:
-		print(option)
+		option_texts.push_back(option.text)
+		
+	var i = await Global.prompt(option_texts)
+	var selected_option = options[i]
+	
 	options = []
+	
+	GameState["ans"] = selected_option.alias
+	await exec_lines(selected_option.lines)
+
+func cmd_flush(cmd_arg, lines):
+	await flush_options()
 	
 # gathers an option for later
 func cmd_option(cmd_arg, lines):
 	var pair = cmd_arg.split("=", false, 2)
 	
 	var option = ActionScriptOption.new()
-	option.alias = pair[0]
+	option.alias = pair[0].strip_edges()
 	option.text = pair[-1]
 	option.lines = lines
 	
@@ -277,20 +302,23 @@ func cmd_option(cmd_arg, lines):
 # to deal with nested ifs
 func if_safe_exec_lines(lines):
 	var old_if_state = if_state
-	exec_lines(lines)
+	await exec_lines(lines)
 	if_state = old_if_state
 
 func cmd_if(cmd_arg, lines):
-	if_state = eval_godot(cmd_arg)
+	if_state = await eval_godot(cmd_arg)
 	
 	if if_state == true:
-		if_safe_exec_lines(lines)
+		await if_safe_exec_lines(lines)
 	
 func cmd_else(cmd_arg, lines):
 	if if_state == false:
-		if_safe_exec_lines(lines)
+		await if_safe_exec_lines(lines)
 
 func cmd_elif(cmd_arg, lines):
 	if if_state == false:
-		cmd_if(cmd_arg, lines)
+		await cmd_if(cmd_arg, lines)
 #endregion
+
+func cmd_quit(_cmd_arg, _lines):
+	quit = true
