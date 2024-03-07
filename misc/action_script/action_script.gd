@@ -21,15 +21,51 @@ var if_state = false
 # the unprocessed options 
 var options = []
 
+#region load
 # creates a new ActionScript object from 
 # a scene name
 static func load(scene:String):
+	# load file
+	var file_name = "res://action_scripts/" + scene + ".txt"
+	var file = FileAccess.open(file_name, FileAccess.READ)
+	var lines = Array(file.get_as_text().split("\n"))
+	
+	#make action_script
 	var action_script = ActionScript.new()
-	# load file content as lines
-	action_script.lines = Parser.load(scene)
+	action_script.lines = lines
 	action_script.scene = scene
 	return action_script
+#endregion
 
+
+#region parse
+# figure out how many lines at the top
+# are indented
+# return them dedeneted
+static func get_indent(lines :Array):
+	var indented_lines = []
+	while not lines.is_empty():
+		if is_indented(lines[0]):
+			var line = lines.pop_front().trim_prefix("\t")
+			indented_lines.push_back(line)
+		else:
+			break
+	return indented_lines
+
+static func is_indented(line :String):
+	return line.begins_with("\t") or line.strip_edges().is_empty()
+
+# replaces the substr of line
+# pointed to by regex_match
+# with replacement
+static func replace(regex_match, line, replacement):
+	return line.left(regex_match.get_start()) \
+			+ replacement \
+			+ line.right(-regex_match.get_end())
+#endregion
+
+
+#region exec_as
 # runs this ActionScript
 func exec():
 	exec_lines(lines)
@@ -49,7 +85,7 @@ func exec_lines(lines :Array):
 			exec_godot([line])
 			continue
 			
-		line = subst_line(line)
+		line = subst_brace_exps(line)
 			
 		if line.begins_with("@"):
 			exec_scene_line(line)
@@ -59,7 +95,7 @@ func exec_lines(lines :Array):
 			print(line)
 			continue
 				
-		var cmd_with_arg = Parser.split_cmd(line)
+		var cmd_with_arg = split_cmd(line)
 		var cmd = cmd_with_arg[0]
 		var cmd_method = "cmd_" + cmd
 		var cmd_arg = cmd_with_arg[1]
@@ -68,9 +104,31 @@ func exec_lines(lines :Array):
 			cmd_method = "cmd_say"
 			cmd_arg = cmd
 		
-		call(cmd_method, cmd_arg, Parser.get_indent(lines))
+		call(cmd_method, cmd_arg, get_indent(lines))
 
-func subst_line(line):
+# splits a command line into the command name
+# and the command argument
+# syntax: cmd cmd_arg:
+# returns [cmd, cmd_arg]
+static func split_cmd(line :String):
+	var pair = line.trim_suffix(":").split(" ", false, 1)
+	if pair.size() == 1:
+		pair.push_back("")
+	return pair
+	
+func exec_scene_line(line :String):
+	line = line.trim_prefix("@")
+	var words = line.split(" ", false)
+	var scene = words[0]
+	var action_script = ActionScript.load(scene)
+	action_script.args = words.slice(1)
+	await action_script.exec()
+	options += action_script.options
+#endregion
+
+
+#region subst
+func subst_brace_exps(line):
 	var regex = RegEx.new()
 	regex.compile("{.*}")
 	while true:
@@ -82,33 +140,12 @@ func subst_line(line):
 			.trim_prefix("{").trim_suffix("}")
 		var value = eval_godot(exp)
 		
-		line = Parser.replace(regex_match, line, str(value))
+		line = replace(regex_match, line, str(value))
 	return line 
-
-func cmd_do(cmd_arg, lines):
-	exec_godot([cmd_arg]+lines)
-
-# executes lines of godot code
-func exec_godot(code :Array):
-	# make an action_script variable
-	# so that the godot code can acess
-	# this ActionScript object
-	var gd_code = "var action_script\n"
-	
-	# add the lines to a function
-	gd_code += "func eval():\n"
-	for line in code:
-		line = process_godot_line(line)
-		gd_code += "\t" + line + "\n"
-	
-	return Parser.exec_godot(gd_code, self)
-	
-func eval_godot(exp:String):
-	return exec_godot(["return "+exp])
 
 # replaces all &variables with
 # actual valid expressions
-func process_godot_line(line :String):
+func subst_vars(line :String):
 	# search for variables
 	var regex = RegEx.new()
 	regex.compile("&[a-z0-9_]+")
@@ -142,9 +179,44 @@ func process_godot_line(line :String):
 			var_addr = var_name+"_not_found"
 		
 		# replace the &variable expression with the address
-		line = Parser.replace(regex_match, line, var_addr)
+		line = replace(regex_match, line, var_addr)
 	return line
+#endregion
 
+
+#region exec_godot
+func cmd_do(cmd_arg, lines):
+	exec_godot([cmd_arg]+lines)
+
+
+# executes lines of godot code
+func exec_godot(code :Array):
+	# make an action_script variable
+	# so that the godot code can acess
+	# this ActionScript object
+	var gd_code = "var action_script\n"
+	
+	# add the lines to a function
+	gd_code += "func eval():\n"
+	for line in code:
+		line = subst_vars(line)
+		gd_code += "\t" + line + "\n"
+	
+	var script = GDScript.new()
+	script.set_source_code(gd_code)
+	script.reload()
+	var ref = RefCounted.new()
+	ref.set_script(script)
+	ref["action_script"] = self
+	return ref.call("eval")
+
+
+func eval_godot(exp:String):
+	return exec_godot(["return "+exp])
+#endregion
+
+
+#region vars
 func init_vars(lines, assign_values):
 	for line in lines:
 		if line.is_empty():
@@ -174,7 +246,10 @@ func cmd_args(cmd_arg, lines):
 	
 func cmd_vars(cmd_arg, lines):
 	init_vars(lines, [])
+#endregion
 
+
+#region option
 # displays the unhandled options
 func flush_options():
 	if options.is_empty():
@@ -193,16 +268,10 @@ func cmd_option(cmd_arg, lines):
 	option.lines = lines
 	
 	options.push_back(option)
+#endregion
 
-func exec_scene_line(line :String):
-	line = line.trim_prefix("@")
-	var words = line.split(" ", false)
-	var scene = words[0]
-	var action_script = ActionScript.load(scene)
-	action_script.args = words.slice(1)
-	await action_script.exec()
-	options += action_script.options
 
+#region if
 # executes the lines
 # but restores if_state to its original afterwards
 # to deal with nested ifs
@@ -224,5 +293,4 @@ func cmd_else(cmd_arg, lines):
 func cmd_elif(cmd_arg, lines):
 	if if_state == false:
 		cmd_if(cmd_arg, lines)
-		
-
+#endregion
