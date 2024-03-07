@@ -20,6 +20,13 @@ SceneLoader="*res://scripts/scene_loader.gd"
 GameState="*res://scripts/game_state.gd"
 Global="*res://scripts/global.gd"
 
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/shadowed_variable_base_class=0
+gdscript/warnings/shadowed_global_identifier=0
+gdscript/warnings/static_called_on_instance=0
+
 [display]
 
 window/size/viewport_width=192

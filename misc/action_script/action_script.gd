@@ -253,10 +253,10 @@ func init_vars(lines, assign_values):
 		if not assign_values.is_empty():
 			GameState.data[var_name] = assign_values.pop_front()
 
-func cmd_args(cmd_arg, lines):
+func cmd_args(_cmd_arg, lines):
 	await init_vars(lines, args)
 	
-func cmd_vars(cmd_arg, lines):
+func cmd_vars(_cmd_arg, lines):
 	await init_vars(lines, [])
 #endregion
 
@@ -280,7 +280,7 @@ func flush_options():
 	GameState["ans"] = selected_option.alias
 	await exec_lines(selected_option.lines)
 
-func cmd_flush(cmd_arg, lines):
+func cmd_flush(_cmd_arg, _lines):
 	await flush_options()
 	
 # gathers an option for later
@@ -311,7 +311,7 @@ func cmd_if(cmd_arg, lines):
 	if if_state == true:
 		await if_safe_exec_lines(lines)
 	
-func cmd_else(cmd_arg, lines):
+func cmd_else(_cmd_arg, lines):
 	if if_state == false:
 		await if_safe_exec_lines(lines)
 
