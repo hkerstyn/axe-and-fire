@@ -51,6 +51,7 @@ if &ans in ["what", "cathedrian"]:
 	if true:
 		option Don't you get cold?:
 			The wish for freedom keeps me awake at night.
+	flush:
 	if not &ans == "yes":
 		So one last time.
 		Are you a true Cathebian?
