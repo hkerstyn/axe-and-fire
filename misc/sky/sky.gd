@@ -16,7 +16,7 @@ func _ready():
 	mesh.cast_shadow = 0
 	
 	# set the size of the skybox to really large
-	scale = 1000.0 * Vector3.ONE
+	scale = 500.0 * Vector3.ONE
 	
 func _process(delta):
 	rotate_y(rotation_speed*delta)

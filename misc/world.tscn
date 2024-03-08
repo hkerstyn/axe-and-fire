@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tss5kskyupkk"]
+[gd_scene load_steps=8 format=3 uid="uid://tss5kskyupkk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ucdeo"]
 [ext_resource type="PackedScene" uid="uid://bv31g6i7kgnkl" path="res://misc/sky/sky.tscn" id="2_ft84k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5lio6hc8k4sb" path="res://misc/ui/terminal.tscn" id="3_pwm18"]
 [ext_resource type="PackedScene" uid="uid://co8yl3pyfugrr" path="res://misc/ui/prompt.tscn" id="5_v3mba"]
 [ext_resource type="Script" path="res://misc/ui/speech_thingy.gd" id="6_frr1w"]
+[ext_resource type="Script" path="res://misc/camera.gd" id="7_4q4gw"]
 
 [node name="World" type="Node3D"]
 editor_description = "this is the scene that actually gets rendered"
@@ -34,3 +35,11 @@ script = ExtResource("6_frr1w")
 
 [node name="Prompt" parent="UI" instance=ExtResource("5_v3mba")]
 layout_mode = 1
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.183986, 0.786526, -0.589513, 0, 0.599752, 0.800186, 0.982929, 0.147223, -0.110346, -3.74327, 5.08099, -0.700671)
+current = true
+fov = 70.0
+near = 0.1
+far = 1000.0
+script = ExtResource("7_4q4gw")

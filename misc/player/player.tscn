@@ -24,16 +24,13 @@ shape = SubResource("SphereShape3D_13a5a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_r4ewe")
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-0.183986, 0.786526, -0.589513, 0, 0.599752, 0.800186, 0.982929, 0.147223, -0.110346, -3.74327, 5.08099, -0.700671)
-current = true
-fov = 70.0
-near = 0.1
-far = 1000.0
+[node name="RollPivot" type="Node3D" parent="."]
+transform = Transform3D(1.51344, 0, 0, 0, 5.06453, 0, 0, 0, 1.93546, 0, 1, 0)
 
-[node name="Mesh" parent="." instance=ExtResource("2_2advc")]
+[node name="Mesh" parent="RollPivot" instance=ExtResource("2_2advc")]
+transform = Transform3D(0.660748, 0, 0, 0, 0.197452, -9.03378e-08, 0, 3.45235e-08, 0.516672, 0, -0.197452, 0)
 
-[node name="Skeleton3D" parent="Mesh/Armature" index="0"]
+[node name="Skeleton3D" parent="RollPivot/Mesh/Armature" index="0"]
 bones/0/rotation = Quaternion(0.740245, 0, 0, 0.672337)
 bones/1/rotation = Quaternion(0.740245, 0, 0, 0.672337)
 bones/2/rotation = Quaternion(0.740245, 0, 0, 0.672337)
@@ -51,10 +48,10 @@ bones/26/rotation = Quaternion(-0.00295349, 4.37112e-08, 1.29101e-10, 0.999996)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/rotation = Quaternion(-0.670148, 5.27396e-15, 4.76159e-15, 0.742228)
 
-[node name="ExecArea" type="Area3D" parent="Mesh"]
+[node name="ExecArea" type="Area3D" parent="RollPivot/Mesh"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ExecArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollPivot/Mesh/ExecArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02969, 0.671477)
 shape = SubResource("BoxShape3D_lk772")
 
-[editable path="Mesh"]
+[editable path="RollPivot/Mesh"]
