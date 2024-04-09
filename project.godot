@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 SceneLoader="*res://scripts/scene_loader.gd"
 GameState="*res://scripts/game_state.gd"
 Global="*res://scripts/global.gd"
+MaterialLoader="*res://scripts/material_loader.gd"
 
 [debug]
 
@@ -79,4 +80,5 @@ special={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

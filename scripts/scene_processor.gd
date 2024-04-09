@@ -5,10 +5,10 @@ class_name SceneProcessor
 static func process(node):
 	# assign flat material
 	if node is MeshInstance3D:
-		FlatMaterialAssigner.assign_flat_material(node)
+		node.mesh.surface_set_material(0, MaterialLoader.load("flat"))	
 		
 	# consider the words the node name is made of
-	var name_words = node.name.split(" ", false)
+	var name_words = node.name.get_slice("_", 0).split(" ", false)
 	var name = name_words[0]
 	var args = name_words.slice(1)
 	

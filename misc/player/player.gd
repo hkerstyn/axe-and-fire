@@ -43,6 +43,11 @@ func exec():
 			await area.exec()
 			frozen = false		
 
+func update_shader_values():
+	MaterialLoader.set_property("player_position", global_position)
+	MaterialLoader.set_property("player_velocity", velocity)
+
+
 func get_direction():
 	var left_dir = - Global.find("Camera").global_basis.x
 	left_dir.y = 0
@@ -102,7 +107,7 @@ func _physics_process(delta):
 	if frozen:
 		animation_player.play("Idle", 0.5)
 		return
-	
+	update_shader_values()
 	# get current time
 	time = Time.get_ticks_msec()
 

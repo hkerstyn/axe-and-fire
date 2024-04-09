@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dydcxqvh07a1v"
-path="res://.godot/imported/sunlit.png-f2aa7e81cc2c39fef2f9218a795df6a7.ctex"
+uid="uid://bf8swet71mfrm"
+path="res://.godot/imported/lamplit.png-307493921b9ec4ca96498ffaef928fcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://misc/palettes/sunlit.png"
-dest_files=["res://.godot/imported/sunlit.png-f2aa7e81cc2c39fef2f9218a795df6a7.ctex"]
+source_file="res://shaders/lamplit.png"
+dest_files=["res://.godot/imported/lamplit.png-307493921b9ec4ca96498ffaef928fcf.ctex"]
 
 [params]
 
